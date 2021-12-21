@@ -7,6 +7,11 @@ const subtract = (a, b) => Number(a) - Number(b);
 const multiply = (a, b) => Number(a) * Number(b); 
 const divide = (a, b) => Number(a) / Number(b); 
 
+const updateDisplay = () => {
+    currentOutput.textContent = value;
+    previousOutput.textContent = previousValue; 
+}
+
 const operate = (operator, a, b) => {
     let result;
     console.log(operator);
@@ -33,10 +38,7 @@ const operate = (operator, a, b) => {
 const currentOutput = document.querySelector('.current');
 const previousOutput = document.querySelector('.previous')
 
-const updateDisplay = () => {
-    currentOutput.textContent = value;
-    previousOutput.textContent = previousValue; 
-}
+
 
 document.querySelectorAll('[data-number]').forEach(btn => {
     btn.addEventListener('click', () => {
