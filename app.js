@@ -6,8 +6,9 @@ const add = (a, b) => Number(a) + Number(b);
 const subtract = (a, b) => Number(a) - Number(b); 
 const multiply = (a, b) => Number(a) * Number(b); 
 const divide = (a, b) => Number(a) / Number(b); 
+
 const operate = (operator, a, b) => {
-    let result; 
+    let result;
     console.log(operator);
     switch (operator) { 
         case ("add"):
@@ -18,12 +19,14 @@ const operate = (operator, a, b) => {
             break;
         case ("multiply"):
             result = multiply(a, b);
+            break;
         case ("divide"):
             result = divide(a, b);
+            break;
     }
     previousValue = ""; 
     operator = "";
-    value = result;
+    value = String(result);
     updateDisplay();
 } 
 
@@ -46,7 +49,6 @@ document.querySelectorAll('[data-number]').forEach(btn => {
                 value = "";
             }
         } 
-
         value += atb;
         updateDisplay();
     })
@@ -75,5 +77,6 @@ document.querySelectorAll('[data-action]').forEach(btn => {
                 if(operator!="" && previousValue!="" && value!="") operate(operator, previousValue, value); 
                 break;
         }
+        console.log(atb)
     })
 })
