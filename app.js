@@ -2,12 +2,13 @@ let value = "";
 let previousValue = ""; 
 let operator = "";
 
-const add = (a, b) => a + b; 
-const subtract = (a, b) => a - b; 
-const multiply = (a, b) => a * b; 
-const divide = (a, b) => a / b; 
+const add = (a, b) => Number(a) + Number(b); 
+const subtract = (a, b) => Number(a) - Number(b); 
+const multiply = (a, b) => Number(a) * Number(b); 
+const divide = (a, b) => Number(a) / Number(b); 
 const operate = (operator, a, b) => {
     let result; 
+    console.log(operator);
     switch (operator) { 
         case ("add"):
             result = add(a, b);
@@ -20,7 +21,10 @@ const operate = (operator, a, b) => {
         case ("divide"):
             result = divide(a, b);
     }
-    return result;
+    previousValue = ""; 
+    operator = "";
+    value = result;
+    updateDisplay();
 } 
 
 const currentOutput = document.querySelector('.current');
@@ -34,12 +38,14 @@ const updateDisplay = () => {
 document.querySelectorAll('[data-number]').forEach(btn => {
     btn.addEventListener('click', () => {
         let atb = btn.getAttribute("data-number");
-        if (atb == "." && value.includes('.')) return; 
+        if (atb == "." && value.includes('.') ) return; 
 
-        if (operator != "" && previousValue=="") {
+        if (operator != "") {
+            if(previousValue=="") {
             previousValue = value;
-            value = "";
-        }
+                value = "";
+            }
+        } 
 
         value += atb;
         updateDisplay();
@@ -58,6 +64,7 @@ document.querySelectorAll('[data-action]').forEach(btn => {
                 updateDisplay();
                 break;
             case ("equal"):
+                operate(operator, previousValue, value); 
                 break; 
             case ("delete"):
                 value = value.substring(0, value.length - 1); 
@@ -65,8 +72,8 @@ document.querySelectorAll('[data-action]').forEach(btn => {
                 break;
             default:
                 operator = atb;
+                if(operator!="" && previousValue!="" && value!="") operate(operator, previousValue, value); 
                 break;
         }
-        console.log(operator);
     })
 })
