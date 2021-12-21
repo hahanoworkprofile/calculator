@@ -1,0 +1,49 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  width: 400px;
+  height: 400px;
+  border: 2px black solid;
+  margin-top: 5%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.previous {
+  font-size: 1.4rem;
+}
+
+.output {
+  grid-column: auto/ span 4;
+  font-size: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 1%;
+  word-wrap: break-word;
+  word-break: break-all;
+  border: 1px black solid;
+}
+
+button {
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+button[data-action="clear"],
+button[data-action="equal"] {
+  grid-column: auto / span 2;
+}
