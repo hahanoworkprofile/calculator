@@ -9,7 +9,7 @@ const divide = (a, b) => Number(a) / Number(b);
 
 const updateDisplay = () => {
     currentOutput.textContent = value;
-    previousOutput.textContent = previousValue; 
+    previousOutput.textContent = previousValue + " " + operator; 
 }
 
 const operate = (operator, a, b) => {
